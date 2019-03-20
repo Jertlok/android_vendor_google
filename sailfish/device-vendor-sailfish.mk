@@ -1,83 +1,96 @@
-# Copyright (C) 2016 The Pure Nexus Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 $(call inherit-product, vendor/google/sailfish/sailfish-vendor-blobs.mk)
 
-# Prebuilt /apps
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.control_privapp_permissions=disable
+
+# Prebuilt APKs/JARs from 'proprietary/app'
 PRODUCT_PACKAGES += \
+    ims \
+    SSRestartDetector \
+    VZWAPNLib
+
+PRODUCT_PACKAGES += \
+    arcore \
     atfwd \
     colorservice \
     datastatusnotification \
     embms \
     fastdormancy \
-    ims \
     imssettings \
-    NetworkSetting \
+    Ornament \
+    PresencePolling \
     QAS_DVC_MSP \
     QtiTelephonyService \
-    PresencePolling \
     radioconfig \
     RCSBootstraputil \
     RcsService \
     SecureExtAuthService \
     shutdownlistener \
-    SSRestartDetector \
     TimeService \
     Tycho \
-    VZWAPNLib \
-    vzw_msdc_api \
-    xdivert
+    vzw_msdc_api
 
-# Prebuilt /framework
+# Prebuilt APKs libs symlinks from 'proprietary/app'
 PRODUCT_PACKAGES += \
-	com.android.ims.rcsmanager \
-    embmslibrary \
+    libimsmedia_jni_64.so \
+    libimscamera_jni_64.so
+
+# Prebuilt APKs/JARs from 'proprietary/framework'
+PRODUCT_PACKAGES += \
+    libhwinfo \
+    LowPowerMonitorDeviceInterface \
+    LowPowerMonitorDeviceStub \
+    com.google.android.camera.experimental2016 \
+    PowerAnomalyDataModemInterface \
+    PowerAnomalyStub \
     qcrilhook \
-    QtiTelephonyServicelibrary \
-    rcsservice \
     VerizonUnifiedSettings
 
-# Prebuilt /priv-app
+PRODUCT_PACKAGES += \
+    embmslibrary \
+    QtiTelephonyServicelibrary \
+    qti-vzw-ims-internal \
+    rcsservice
+
+# Prebuilt APKs/JARs from 'proprietary/priv-app'
 PRODUCT_PACKAGES += \
     AppDirectedSMSService \
-    CarrierEntitlement \
+    Asdiv \
     CarrierServices \
+    CarrierSetup \
     CNEService \
     ConnMO \
     DCMO \
     DiagMon \
     DMService \
-    GCS \
-    GoogleCarrierConfig \
-    HotwordEnrollment \
+    HotwordEnrollmentOKGoogleWCD9335 \
+    HotwordEnrollmentTGoogleWCD9335 \
+    HotwordEnrollmentXGoogleWCD9335 \
+    LLKAgent \
+    MyVerizonServices \
     OBDM_Permissions \
     obdm_stub \
     OemDmTrigger \
-    OobConfig \
     qcrilmsgtunnel \
     SprintDM \
     SprintHM \
-    VZWAPNService \
-    VZWAVS \
-    VzwLcSilent \
+    TetheringEntitlement \
+    VerizonAuthDialog \
     VzwOmaTrigger \
     WfcActivation
 
-# Symlinks
+# Prebuilt APKs libs symlinks from 'proprietary/priv-app'
 PRODUCT_PACKAGES += \
-    libimsmedia_jni.so \
-    libimscamera_jni.so \
-    libdmengine.so \
-    libdmjavaplugin.so
+    libdmengine_32.so \
+    libdmjavaplugin_32.so
 
+# Enforced modules from user configuration
+PRODUCT_PACKAGES += \
+    com.android.ims.rcsmanager \
+    libion \
+    libminui \
+    nanotool \
+    bufferhubd \
+    vr_hwc \
+    performanced \
+    virtual_touchpad
